@@ -10,9 +10,13 @@ monitoreo = APIRouter()
 def find_all_monitoreo():
     return muchosMonitoreosEntity(conn.monitoreo.dato.find())
 
-@monitoreo.get('/monitoreo/temperatura')
-def find_monitoreo_temperatura():
-    return "Retorno solo dato de temperatura"
+@monitoreo.get('/monitoreo/temperatura/{temp}')
+def find_monitoreo_temperatura(temp: float):
+    return muchosMonitoreosEntity(conn.monitoreo.dato.find({"temperatura":{"$get":temp}}))
+
+@monitoreo.get('/monitoreo/lugar/{lug}/autor/{aut}')
+def find_monitoreo_place_author(lug: str, aut: str):
+    return muchosMonitoreosEntity(conn.monitoreo.dato.find({"lugar":lug, "autor":aut}))
 
 @monitoreo.post('/monitoreo')
 def save_monitoreo(mon: Monitoreo):
