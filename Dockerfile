@@ -7,7 +7,7 @@ ENV PYTHONNUNBUFFERED = 1
 
 WORKDIR /
 COPY requirements.txt requirements.txt
-RUN pip intall --no-cache-dir --upgrade -r /requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /requirements.txt
 
 COPY . .
 
